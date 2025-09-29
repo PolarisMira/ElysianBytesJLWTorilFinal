@@ -1,28 +1,21 @@
-<!DOCTYPE html>
+<%- include('header') %>
 
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="page.css">
-    </head>
-
-    <body>
-        <section id="page" class="flex">
+        <section id="register-page" class="flex-center">
 
             <h2>“Your sweet cravings, one click away”</h2>
 
-            <div class="log-in-container flex">
+            <div class="log-in-container flex-center">
+                <h2>Sign Up</h2>
                 <form action="/register" id="form1" method="post"></form>
                 <label for="">username</label>
-                <input type="text" form="form1" name="username">
+                <input type="text" form="form1" name="username"class="input-txt">
                 <label for="">password</label>
-                <input type="password" form="form1" name="password">
-                <input type="submit" form="form1">
+                <input type="password" form="form1" name="password" class="input-txt">
+                <input type="submit" form="form1" class="input-btn">
             </div>
 
         </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>
