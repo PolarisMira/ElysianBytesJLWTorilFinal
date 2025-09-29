@@ -11,3 +11,7 @@ window.addEventListener("scroll", () => {
         navbar.classList.remove("nav-bar-scrolled"); 
     } 
 });
+
+$(window).on("load", function(){
+    $(".loader-wrapper").fadeOut("slow");
+});
