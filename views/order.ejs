@@ -1,0 +1,60 @@
+<%- include('header-auth') %>
+
+    <section id="main-order" class="flex-center">
+
+        <h1>Your Tray</h1>
+        <div class="inner-order-con flex-center">
+                <div class="order-display flex-center">
+
+                <% if(locals.orders && orders.length > 0) { orders.forEach((order) => { %>
+            
+                <div class="order-con flex-center">
+                    <div class="order-img flex-center">
+                        <img src="images\cakes\<%=order.img%>" alt="">
+                    </div>
+
+                    <div class="order-name flex-center">
+                        <p><%=order.name%></p>
+                    </div>
+
+                    <div class="order-quantity flex-center">
+                        <p>Quantity</p>
+                        <div class="quantity-btn flex-center">
+                            <button>-</button>
+                            <p><%=order.quantity%></p>
+                            <button>+</button>
+                        </div>
+                    </div>
+
+                    <div class="order-price flex-center">
+                        <p>Price</p>
+                        <p>P<%=order.price%>.00</p>
+                    </div>
+
+                    <div class="order-remove flex-center">
+                        <form action="/delete/order" method="POST" class="hidden" id="delete-order-<%=order.img%>"></form>
+                        <input type="hidden" class="hidden" form="delete-order-<%=order.img%>" value="<%=order.name%>" name="cake_name">
+                        <button type="submit" form="delete-order-<%=order.img%>" >
+                            <img src="images\icon\trash.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+            <% })} %>
+
+
+            </div>
+            <div class="order-payment flex-center">
+                <%if(locals.total) {%>
+                    <h2>Total</h2>
+                    <p>P<%=total%>.00</p>
+                    <button>
+                        Proceed Checkout
+                    </button>
+                    <img src="images\icon\gcash.png" alt="">
+                <%}%>
+            </div>
+        </div>
+    </section>
+
+<%- include('footer') %>
