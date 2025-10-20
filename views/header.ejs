@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElysianBytes</title>
-
 
     <style>
         .loader-wrapper {
@@ -40,45 +40,60 @@
         }
     </style>
 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link
+    rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <section class="loader-wrapper">
+    <!-- <section class="loader-wrapper">
         <div class="loader">
             <div class="one"></div>
             <div class="two"></div>
         </div>
-    </section>
+    </section> -->
 
     <nav class="nav-bar flex-center nav-bar-top">
         <div class="nav-con nav-1 flex-center">
             <img src="images/title.png" alt="">
-                <a href="/#trend" class="link-1 link link-color flex-center">
+                <a href="/#trend-h1" class="link-1 link nav-link flex-center">
                     Trend
                 </a>
-                <a href="/#album" class="link-2 link-color link flex-center">
+                <a href="/gallery" class="link-2 link nav-link flex-center">
                     Gallery
                 </a>
-                <a href="/#main-footer" class="link-3 link link-color flex-center">
+                <a href="#main-footer" class="link-3 link nav-link flex-center">
                     Contact
                 </a>
         </div>
         <div class="nav-con nav-3 flex-center">
             <div class="but-1 nav-but flex-center">
                 <img src="images\icon\sign-up.png" alt="">
-                <a href="/register" class="link-color">
+                <a href="/register" class="black nav-link-but">
                     Sign Up
                 </a>
             </div>
             <div class="but-2 nav-but flex-center">
                 <img src="images\icon\login.png" alt="">
-                <a href="/login" class="link-color">
+                <a href="/login" class="black nav-link-but">
                     Log In
+                </a>
+            </div>
+            <div class="but-3 flex-center">
+                <div class="order-amount">
+                    0
+                </div>
+                <a href="" class="cart-but flex-center">
+                    <img src="images\icon\cart.png" alt="">
                 </a>
             </div>
             
         </div>
     </nav>
+
+    <header id="header" class="flex-center header-top">
+        <div id="motto" class="flex-center">
+            “Savor the Moment One Byte at a Time”
+        </div>
+    </header>

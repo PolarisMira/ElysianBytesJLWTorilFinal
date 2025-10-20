@@ -1,0 +1,136 @@
+    <% if(locals.user) { %>
+        <%- include('header-auth') %>
+    <% } else { %>
+        <%- include('header') %>
+    <% } %>
+
+
+    <section id="gallery" class="flex-center">
+
+        <div class="gallery-banner">
+            <img src="images\banner\<%=banner%>.png" alt="">
+        </div>
+
+        <div class="gallery-main flex-center">
+
+            <div class="gallery-browse">
+                
+                <% if(locals.cakes && cakes.length > 0) { cakes.forEach(cake => { %>
+
+                <form class="hidden" action="/order" method="POST" id="gallery-button-<%=cake.id%>"></form>
+                            
+                <input class="hidden" form="gallery-button-<%=cake.id%>" type="hidden" value="<%=cake.id%>" name="cake_id">
+
+                <div class="gallery-item flex-center">
+                    <div class="gallery-img">
+                        <img src="images\new\<%=cake.img%>" alt="">
+                        <button type="button" class="flex-center like-btn" data-cakeid="<%=cake.id%>">  
+                            <img src="images/icon/<%= locals.likedIds && likedIds.includes(cake.id) ? 'heart-filled.png' : 'heart.png' %>" alt="">
+                            <span><%=cake.likes%></span>
+                        </button>
+                    </div>
+
+                    <div class="gallery-text flex-center">
+                        <div class="gallery-name">
+                            <%=cake.name%>
+                        </div>
+
+                        <div class="gallery-price">
+                            ₱<%=cake.price%>.00
+                        </div>
+                    </div>
+
+                    <div class="gallery-button flex-center">
+                        <button type="submit" class="flex-center" form="gallery-button-<%=cake.id%>" <% if(locals.orders) { %> onclick="order(<%=orders%>)" <% } %>>
+                            <img src="images/icon/order.svg" alt="">
+                            Order
+                        </button>
+                    </div>
+                </div>
+
+                <% })} %>
+
+
+            </div>
+
+            <div class="gallery-input flex-center">
+
+
+
+                <form class="hidden" action="/gallery" method="post" id="gallery-choc"></form>
+                <form class="hidden" action="/gallery" method="post" id="gallery-eleg"></form>
+                <form class="hidden" action="/gallery" method="post" id="gallery-birth"></form>
+                <form class="hidden" action="/gallery" method="post" id="gallery-vanil"></form>
+                
+                <input type="hidden" value="chocolate" name="type" form="gallery-choc">
+                <input type="hidden" value="elegant" name="type" form="gallery-eleg">
+                <input type="hidden" value="birthday" name="type" form="gallery-birth">
+                <input type="hidden" value="vanilla" name="type" form="gallery-vanil">
+                
+
+                <button class="cake-category-btn flex-center" type="submit" form="gallery-choc">
+                    <div>Chocolate Cakes</div>
+                    <img src="images\cakes\chocolateStrip.webp" alt="">
+                </button>
+
+                <button class="cake-category-btn flex-center" type="submit" form="gallery-eleg">
+                    <div>Elegant Cakes</div>
+                    <img src="images\cakes\purpleDelight.webp" alt="">
+                </button>
+
+                <button class="cake-category-btn flex-center" type="submit" form="gallery-birth">
+                    <div>Birtday Cakes</div>
+                    <img src="images\cakes\blueBirthday.webp" alt="">
+                </button>
+
+                <button class="cake-category-btn flex-center" type="submit" form="gallery-vanil">
+                    <div>Vanilla Cakes</div>
+                    <img src="images\cakes\whiteRose.webp" alt="">
+                </button>
+
+
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".like-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const cakeId = btn.dataset.cakeid;
+      const countSpan = btn.querySelector("span");
+
+      try {
+        const res = await fetch(`/like/${cakeId}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          let count = parseInt(countSpan.textContent);
+          if (data.liked) {
+            countSpan.textContent = count + 1;
+            btn.querySelector("img").src = "images/icon/heart-filled.png"; // optional: use filled heart
+          } else {
+            countSpan.textContent = count - 1;
+            btn.querySelector("img").src = "images/icon/heart.png";
+          }
+        } else if (res.status === 401) {
+          alert("Please log in to like cakes 💖");
+        }
+      } catch (err) {
+        console.error("Like error:", err);
+      }
+    });
+  });
+});
+</script>
+
+
+
+    <%- include('footer') %>

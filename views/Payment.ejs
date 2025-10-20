@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout - GCash Payment</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 30px auto; }
+    input, button { display:block; width:100%; padding:10px; margin:8px 0; }
+
+    #img-gcash {
+      width: 250px;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Order Checkout</h2>
+
+  <img src="images/A.jpg" alt="GCash QR" id="img-gcash">
+
+  <p>Pay via GCash to <strong>09xx-xxx-xxxx</strong></p>
+  <p>Then upload your payment proof below.</p>
+
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="number" name="amount" placeholder="Amount Paid (₱)" required>
+    <input type="text" name="reference" placeholder="13-digit GCash Reference" required pattern="\d{13}">
+    <input type="text" name="phone" placeholder="Your GCash Phone Number (09xxxxxxxxx)" required pattern="09\d{9}">
+    <input type="file" name="proof" accept="image/*" required>
+    <button type="submit">Submit Payment Proof</button>
+  </form>
+</body>
+</html>

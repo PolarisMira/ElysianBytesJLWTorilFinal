@@ -6,11 +6,11 @@
         <div class="inner-order-con flex-center">
                 <div class="order-display flex-center">
 
-                <% if(locals.orders && orders.length > 0) { orders.forEach((order) => { %>
+                <% if(locals.cakes && cakes.length > 0) { cakes.forEach((order) => { %>
             
                 <div class="order-con flex-center">
                     <div class="order-img flex-center">
-                        <img src="images\cakes\<%=order.img%>" alt="">
+                        <img src="images\new\<%=order.img%>" alt="">
                     </div>
 
                     <div class="order-name flex-center">
@@ -34,7 +34,7 @@
                     <div class="order-remove flex-center">
                         <form action="/delete/order" method="POST" class="hidden" id="delete-order-<%=order.img%>"></form>
                         <input type="hidden" class="hidden" form="delete-order-<%=order.img%>" value="<%=order.name%>" name="cake_name">
-                        <button type="submit" form="delete-order-<%=order.img%>" >
+                        <button type="submit" form="delete-order-<%=order.img%>">
                             <img src="images\icon\trash.svg" alt="">
                         </button>
                     </div>
@@ -48,13 +48,14 @@
                 <%if(locals.total) {%>
                     <h2>Total</h2>
                     <p>P<%=total%>.00</p>
-                    <button>
+                    <a href="/payment">
                         Proceed Checkout
-                    </button>
+                    </a>
                     <img src="images\icon\gcash.png" alt="">
                 <%}%>
             </div>
         </div>
     </section>
+    
 
 <%- include('footer') %>
